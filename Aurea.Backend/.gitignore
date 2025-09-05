@@ -1,0 +1,29 @@
+# Build artifacts
+bin/
+obj/
+
+# IDEs
+.vs/
+.idea/
+*.sln.iml
+
+# User-specific
+*.user
+*.suo
+*.userosscache
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# HTTP client scratch (keep only sanitized examples)
+*.http
+.http/
+
+# Env files
+.env
+*.env
+!.env.example

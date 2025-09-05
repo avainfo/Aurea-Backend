@@ -74,8 +74,8 @@ It does not expose public endpoints and is intended for **private, educational u
 ## 🤝 Contributors
 
 * **Antonin Do Souto**
-* **Hugo**
-* **Pietro**
+* **Hugo Roxo**
+* **Pietro Giacomelli**
 
 ---
 
