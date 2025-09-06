@@ -1,7 +1,9 @@
 # 🎛️ Aurea-Backend — Music Extractor API
 
 Backend service for the **Aurea** music app.
-Provides a private, stateless API that resolves **audio-only** streams from YouTube links for in-app playback and (optionally) analytics and library features. Designed to remain **non-public**, protected by **Firebase Auth** and rate limiting.
+Provides a private, stateless API that resolves **audio-only** streams from YouTube links for in-app playback and (
+optionally) analytics and library features. Designed to remain **non-public**, protected by **Firebase Auth** and rate
+limiting.
 
 ---
 
@@ -16,22 +18,24 @@ It does not expose public endpoints and is intended for **private, educational u
 
 * **Extractor**
 
-    * Takes a YouTube URL and returns the best audio-only stream (Opus/AAC) plus lightweight metadata
-    * Short in-memory cache (≈10–15 min) to avoid repeated extraction of the same URL
+	* Takes a YouTube URL and returns the best audio-only stream (Opus/AAC) plus lightweight metadata
+	* Short in-memory cache (≈10–15 min) to avoid repeated extraction of the same URL
 
 * **Redirect / Proxy (Optional)**
 
-    * **Redirect**: 302 to the current audio stream for simple player integrations
-    * **Proxy**: backend can relay the audio stream (supports range requests) when stricter control is required
+	* **Redirect**: 302 to the current audio stream for simple player integrations
+	* **Proxy**: backend can relay the audio stream (supports range requests) when stricter control is required
 
 * **Search & Metadata (Optional)**
 
-    * Minimal `/search?q=` to relay safe YouTube search results (server-side keys and quotas remain private)
+	* Minimal `/search?q=` to relay safe YouTube search results (server-side keys and quotas remain private)
 
 * **User Data & Analytics (Optional)**
 
-    * **Playlists / Favorites**: CRUD endpoints if you choose to centralize server-side instead of using Firestore directly
-    * **Listening Events**: accept batched pings to enable a yearly **Wrapped** (aggregations run offline or on a schedule)
+	* **Playlists / Favorites**: CRUD endpoints if you choose to centralize server-side instead of using Firestore
+	  directly
+	* **Listening Events**: accept batched pings to enable a yearly **Wrapped** (aggregations run offline or on a
+	  schedule)
 
 ---
 
@@ -82,4 +86,5 @@ It does not expose public endpoints and is intended for **private, educational u
 ## 📜 License / Legal
 
 This repository is for **educational, private use only**.
-Do **not** expose the extractor publicly, and do **not** use it to distribute or monetize content in ways that violate platform **Terms of Service** or **copyright**.
+Do **not** expose the extractor publicly, and do **not** use it to distribute or monetize content in ways that violate
+platform **Terms of Service** or **copyright**.
