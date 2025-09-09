@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurea.Backend", "Aurea.Backend\Aurea.Backend.csproj", "{C948C683-1D1E-46B4-8D31-94B5F5DA9A56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurea.Backend.Tests", "Aurea.Backend.Tests\Aurea.Backend.Tests.csproj", "{4F0C2404-7B41-4A09-9A67-9BDE49E92471}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{C948C683-1D1E-46B4-8D31-94B5F5DA9A56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C948C683-1D1E-46B4-8D31-94B5F5DA9A56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C948C683-1D1E-46B4-8D31-94B5F5DA9A56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F0C2404-7B41-4A09-9A67-9BDE49E92471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F0C2404-7B41-4A09-9A67-9BDE49E92471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F0C2404-7B41-4A09-9A67-9BDE49E92471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F0C2404-7B41-4A09-9A67-9BDE49E92471}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

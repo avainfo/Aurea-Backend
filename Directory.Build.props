@@ -1,0 +1,9 @@
+<Project>
+	<PropertyGroup>
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(CI)'=='true'">
+		<RestoreLockedMode>true</RestoreLockedMode>
+	</PropertyGroup>
+</Project>

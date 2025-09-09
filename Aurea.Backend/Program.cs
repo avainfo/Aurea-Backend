@@ -1,3 +1,5 @@
+using Aurea.Backend.ErrorHandling;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
@@ -22,6 +24,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors();
 
+app.UseJsonExceptionHandler();
+
 app.UseHttpsRedirection();
 
 app.MapGet("/", () =>
@@ -42,3 +46,5 @@ app.MapGet("/health", () => Results.Ok(new { status = "ok" }))
 	.WithTags("System");
 
 app.Run();
+
+public partial class Program {}

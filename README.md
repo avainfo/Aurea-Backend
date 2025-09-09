@@ -75,6 +75,29 @@ It does not expose public endpoints and is intended for **private, educational u
 
 ---
 
+## 🧪 Tests
+
+This project uses **xUnit** for testing.
+Two categories of tests are defined:
+
+- **Unit** → fast, isolated tests without external dependencies
+- **Integration** → spin up the backend with `WebApplicationFactory` and hit real endpoints
+
+Run commands:
+
+```bash
+# All tests
+dotnet test
+
+# Only unit tests
+dotnet test --filter "Category=Unit"
+
+# Only integration tests
+dotnet test --filter "Category=Integration"
+````
+
+---
+
 ## 🤝 Contributors
 
 * **Antonin Do Souto**
