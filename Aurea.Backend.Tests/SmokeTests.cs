@@ -4,6 +4,7 @@ using FluentAssertions;
 
 namespace Aurea.Backend.Tests;
 
+[Trait("Category", "Integration")]
 public class SmokeTests : IClassFixture<CustomWebAppFactory>
 {
 	private readonly CustomWebAppFactory _fact;
