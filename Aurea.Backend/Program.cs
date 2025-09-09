@@ -1,3 +1,5 @@
+using Aurea.Backend.ErrorHandling;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
@@ -21,6 +23,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors();
+
+app.UseJsonExceptionHandler();
 
 app.UseHttpsRedirection();
 
