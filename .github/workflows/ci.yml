@@ -2,7 +2,7 @@ name: CI
 
 on:
     push:
-        branches: [ master, dev ]
+        branches: [ master, dev, feat/ci-pipeline-tests ]
     pull_request:
         branches: [ master, dev ]
 
@@ -69,6 +69,8 @@ jobs:
                 with:
                     dotnet-version: '9.x'
                     cache: true
+                    cache-dependency-path: |
+                        **/packages.lock.json
 
             -   name: Restore
                 run: dotnet restore
