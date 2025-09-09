@@ -1,0 +1,94 @@
+name: CI
+
+on:
+    push:
+        branches: [ master, dev ]
+    pull_request:
+        branches: [ master, dev ]
+
+permissions:
+    contents: read
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    unit-tests:
+        name: Unit Tests
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v4
+
+            -   name: Setup .NET 9
+                uses: actions/setup-dotnet@v4
+                with:
+                    dotnet-version: '9.x'
+                    cache: true
+
+            -   name: Restore
+                run: dotnet restore
+
+            -   name: Build (no restore)
+                run: dotnet build --no-restore -c Release
+
+            -   name: Test (Category=Unit)
+                run: |
+                    dotnet test --no-build -c Release \
+                      --filter "Category=Unit" \
+                      --logger "trx;LogFileName=unit.trx" \
+                      --results-directory ./TestResults/unit \
+                      /p:CollectCoverage=true \
+                      /p:CoverletOutputFormat=cobertura \
+                      /p:CoverletOutput=./TestResults/coverage/unit.xml
+
+            -   name: Upload test results (TRX + Coverage)
+                uses: actions/upload-artifact@v4
+                with:
+                    name: unit-test-results
+                    path: |
+                        TestResults/unit/*.trx
+                        TestResults/coverage/unit.xml
+                    if-no-files-found: ignore
+
+    integration-tests:
+        name: Integration Tests
+        runs-on: ubuntu-latest
+        needs: unit-tests
+
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v4
+
+            -   name: Setup .NET 9
+                uses: actions/setup-dotnet@v4
+                with:
+                    dotnet-version: '9.x'
+                    cache: true
+
+            -   name: Restore
+                run: dotnet restore
+
+            -   name: Build (no restore)
+                run: dotnet build --no-restore -c Release
+
+            -   name: Test (Category=Integration)
+                run: |
+                    dotnet test --no-build -c Release \
+                      --filter "Category=Integration" \
+                      --logger "trx;LogFileName=integration.trx" \
+                      --results-directory ./TestResults/integration \
+                      /p:CollectCoverage=true \
+                      /p:CoverletOutputFormat=cobertura \
+                      /p:CoverletOutput=./TestResults/coverage/integration.xml
+
+            -   name: Upload test results (TRX + Coverage)
+                uses: actions/upload-artifact@v4
+                with:
+                    name: integration-test-results
+                    path: |
+                        TestResults/integration/*.trx
+                        TestResults/coverage/integration.xml
+                    if-no-files-found: ignore
