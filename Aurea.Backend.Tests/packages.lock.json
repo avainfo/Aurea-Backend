@@ -54,8 +54,8 @@
       },
       "Microsoft.AspNetCore.OpenApi": {
         "type": "Transitive",
-        "resolved": "9.0.8",
-        "contentHash": "BwF9sQCKmvu93C/pmKxJjPhF5fFB23MEcgTsGL+7W3wKLYawS4lyFSL5/qh00IJzuADLf+1SmvxMaphbyZYqQQ==",
+        "resolved": "9.0.9",
+        "contentHash": "3Sina0gS/CTYt9XG6DUFPdXOmJui7e551U0kO2bIiDk3vZ2sctxxenN+cE1a5CrUpjIVZfZr32neWYYRO+Piaw==",
         "dependencies": {
           "Microsoft.OpenApi": "1.6.17"
         }
@@ -441,7 +441,7 @@
       "aurea.backend": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.AspNetCore.OpenApi": "[9.0.8, )"
+          "Microsoft.AspNetCore.OpenApi": "[9.0.9, )"
         }
       }
     }
