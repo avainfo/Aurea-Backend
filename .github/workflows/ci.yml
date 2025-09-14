@@ -28,8 +28,14 @@ jobs:
                     cache: true
                     cache-dependency-path: |
                         **/packages.lock.json
-            -   name: Restore
-                run: dotnet restore
+
+            -   name: Restore (PR refresh lock files)
+                if: ${{ github.event_name == 'pull_request' }}
+                run: dotnet restore --force-evaluate
+
+            -   name: Restore (push locked mode)
+                if: ${{ github.event_name != 'pull_request' }}
+                run: dotnet restore -p:RestoreLockedMode=true
 
             -   name: Verify formatting
                 run: dotnet format --verify-no-changes --no-restore
@@ -37,7 +43,6 @@ jobs:
     unit-tests:
         name: Unit Tests
         runs-on: ubuntu-latest
-
         steps:
             -   name: Checkout
                 uses: actions/checkout@v4
@@ -50,8 +55,13 @@ jobs:
                     cache-dependency-path: |
                         **/packages.lock.json
 
-            -   name: Restore
-                run: dotnet restore
+            -   name: Restore (PR refresh lock files)
+                if: ${{ github.event_name == 'pull_request' }}
+                run: dotnet restore --force-evaluate
+
+            -   name: Restore (push locked mode)
+                if: ${{ github.event_name != 'pull_request' }}
+                run: dotnet restore -p:RestoreLockedMode=true
 
             -   name: Build (no restore)
                 run: dotnet build --no-restore -c Release
@@ -92,8 +102,13 @@ jobs:
                     cache-dependency-path: |
                         **/packages.lock.json
 
-            -   name: Restore
-                run: dotnet restore
+            -   name: Restore (PR refresh lock files)
+                if: ${{ github.event_name == 'pull_request' }}
+                run: dotnet restore --force-evaluate
+      
+            -   name: Restore (push locked mode)
+                if: ${{ github.event_name != 'pull_request' }}
+                run: dotnet restore -p:RestoreLockedMode=true
 
             -   name: Build (no restore)
                 run: dotnet build --no-restore -c Release
