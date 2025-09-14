@@ -1,0 +1,83 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":disableRateLimiting",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(chore)",
+    ":automergeDisabled",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "labels": [
+    "deps",
+    "renovate"
+  ],
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 0,
+  "timezone": "Europe/Lisbon",
+  "schedule": [
+    "before 6am on monday"
+  ],
+  "dependencyDashboard": true,
+  "rangeStrategy": "bump",
+
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": false,
+    "schedule": ["before 6am on monday"]
+  },
+
+  "packageRules": [
+    {
+      "matchManagers": [
+        "nuget"
+      ],
+      "groupName": "nuget (.NET)",
+      "minimumReleaseAge": "3 days"
+    },
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "groupName": "GitHub Actions",
+      "extends": [
+        ":pinDigests"
+      ],
+      "minimumReleaseAge": "2 days"
+    },
+    {
+      "matchManagers": [
+        "dockerfile",
+        "docker-compose"
+      ],
+      "groupName": "Docker base images",
+      "minimumReleaseAge": "3 days"
+    },
+    {
+      "matchManagers": [
+        "npm"
+      ],
+      "groupName": "Frontend JS deps",
+      "minimumReleaseAge": "3 days"
+    },
+    {
+      "matchManagers": [
+        "nuget",
+        "github-actions"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "automerge": true,
+      "platformAutomerge": true,
+      "requiredStatusChecks": null
+    },
+    {
+      "matchDatasources": [
+        "nuget"
+      ],
+      "ignoreUnstable": true
+    }
+  ]
+}
