@@ -20,6 +20,13 @@
   ],
   "dependencyDashboard": true,
   "rangeStrategy": "bump",
+
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": false,
+    "schedule": ["before 6am on monday"]
+  },
+
   "packageRules": [
     {
       "matchManagers": [
