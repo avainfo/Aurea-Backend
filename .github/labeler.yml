@@ -1,0 +1,10 @@
+deps:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.csproj"
+          - "**/packages.lock.json"
+          - ".github/workflows/*.yml"
+          - "Dockerfile"
+          - "docker/**"
+          - "package.json"
+          - "package-lock.json"
