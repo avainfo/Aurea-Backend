@@ -26,6 +26,9 @@ app.UseCors();
 
 app.UseJsonExceptionHandler();
 
+app.UseStatusCodePages(async context =>
+	await StatusCodePageWriter.WriteJsonAsync(context.HttpContext));
+
 app.UseHttpsRedirection();
 
 app.MapGet("/", () =>
