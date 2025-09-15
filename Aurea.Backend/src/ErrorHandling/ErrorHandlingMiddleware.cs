@@ -5,15 +5,13 @@ namespace Aurea.Backend.ErrorHandling;
 
 public sealed class ErrorHandlingMiddleware(RequestDelegate next, IWebHostEnvironment env)
 {
-	private readonly RequestDelegate _next = next;
-	private readonly IWebHostEnvironment _env = env;
 	private static readonly JsonSerializerOptions JsonOpts = new(JsonSerializerDefaults.Web);
 
 	public async Task Invoke(HttpContext ctx)
 	{
 		try
 		{
-			await _next(ctx);
+			await next(ctx);
 		}
 		catch (Exception ex)
 		{
@@ -23,17 +21,16 @@ public sealed class ErrorHandlingMiddleware(RequestDelegate next, IWebHostEnviro
 
 	private async Task WriteExceptionAsync(HttpContext ctx, Exception ex)
 	{
-		var includeDetails = _env.IsDevelopment();
+		var includeDetails = env.IsDevelopment();
 		var (status, code, message) = ExceptionMapping.Map(ex, includeDetails);
 
-		// Prefer Activity.Current.Id, fallback to HttpContext.TraceIdentifier
 		var requestId = Activity.Current?.Id ?? ctx.TraceIdentifier;
 
 		var envelope = new ErrorEnvelope
 		{
 			Code = code,
 			Message = message,
-			Details = includeDetails ? ex.GetType().Name : null, // keep it minimal even in dev
+			Details = includeDetails ? ex.GetType().Name : null,
 			RequestId = requestId,
 			Path = ctx.Request.Path
 		};

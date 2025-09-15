@@ -18,11 +18,7 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
-{
 	app.MapOpenApi();
-}
-
-app.UseCors();
 
 app.UseJsonExceptionHandler();
 
@@ -30,6 +26,8 @@ app.UseStatusCodePages(async context =>
 	await StatusCodePageWriter.WriteJsonAsync(context.HttpContext));
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.MapGet("/", () =>
 	{
@@ -50,6 +48,6 @@ app.MapGet("/health", () => Results.Ok(new { status = "ok" }))
 
 app.Run();
 
-public partial class Program
+public abstract partial class Program
 {
 }
